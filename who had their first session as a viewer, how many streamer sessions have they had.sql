@@ -1,0 +1,60 @@
+--From users who had their first session as a viewer, how many streamer sessions have they had? Return the user id and number of sessions in descending order. In case there are users with the same number of sessions, order them by ascending user id
+
+----------------------------------------------------------------------
+--Solution
+-- Drop the table if it already exists (safety step)
+DROP TABLE IF EXISTS twitch_sessions;
+
+-- Create the twitch_sessions table
+CREATE TABLE twitch_sessions (
+    user_id BIGINT,
+    session_start DATETIME,
+    session_end DATETIME,
+    session_id BIGINT PRIMARY KEY,
+    session_type VARCHAR(20) CHECK (session_type IN ('viewer', 'streamer'))
+);
+
+-- Insert sample Twitch session data
+INSERT INTO twitch_sessions (user_id, session_start, session_end, session_id, session_type) VALUES
+(101, '2024-02-01 10:00:00', '2024-02-01 11:00:00', 1, 'viewer'),
+(101, '2024-02-02 14:00:00', '2024-02-02 15:30:00', 2, 'streamer'),
+(102, '2024-02-01 09:30:00', '2024-02-01 10:30:00', 3, 'viewer'),
+(102, '2024-02-03 16:00:00', '2024-02-03 17:00:00', 4, 'streamer'),
+(102, '2024-02-05 18:00:00', '2024-02-05 19:30:00', 5, 'streamer'),
+(103, '2024-02-02 11:00:00', '2024-02-02 12:00:00', 6, 'viewer'),
+(104, '2024-02-01 08:30:00', '2024-02-01 09:00:00', 7, 'viewer'),
+(104, '2024-02-04 20:00:00', '2024-02-04 21:00:00', 8, 'streamer'),
+(104, '2024-02-06 22:00:00', '2024-02-06 23:00:00', 9, 'streamer'),
+(104, '2024-02-07 15:00:00', '2024-02-07 16:30:00', 10, 'streamer');
+
+
+--SQL Query---
+WITH first_session AS (
+    SELECT 
+        user_id,
+        session_type,
+        session_start,
+        ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY session_start ASC) AS rn
+    FROM twitch_sessions
+),
+first_viewer_users AS (
+    SELECT user_id
+    FROM first_session
+    WHERE rn = 1 AND session_type = 'viewer'
+)
+SELECT 
+    t.user_id,
+    COUNT(CASE WHEN t.session_type = 'streamer' THEN 1 END) AS streamer_sessions
+FROM twitch_sessions t
+JOIN first_viewer_users fvu 
+    ON t.user_id = fvu.user_id
+GROUP BY t.user_id
+ORDER BY streamer_sessions DESC, t.user_id ASC;
+
+
+--result:
+--user_id	streamer_sessions
+--104	3
+--102	2
+--101	1
+--103	0
