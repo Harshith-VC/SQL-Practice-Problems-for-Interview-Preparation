@@ -1,2 +1,8 @@
-# SQL-Practice-Problems-for-Interview-Preparation
-This repo shares SQL questions asked in interviews along with a set of practical problems taken from real scenarios. Every question includes a direct explanation and solution to help you learn the logic and build confidence for data analyst interviews
+## What is Structured Query Language (SQL)?
+
+SQL stands for Structured Query Language.  
+It is a domain specific programming language that is used to manage and manipulate data stored in relational database management systems.  
+SQL helps you query data, insert new records, update existing information and control access to the database.
+
+
+
