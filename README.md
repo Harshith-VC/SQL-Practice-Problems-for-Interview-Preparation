@@ -1,13 +1,32 @@
-## What is Structured Query Language (SQL)?
+# SQL Functions & Reference Guide
+
+## 📋 Table of Contents
+- [What is SQL?](#what-is-sql)
+- [SQL Functions](#sql-functions)
+  - [Aggregate Functions](#aggregate-functions)
+  - [String/Text Functions](#stringtext-functions)
+  - [Numeric/Math Functions](#numericmath-functions)
+  - [Date and Time Functions](#date-and-time-functions)
+  - [Conversion Functions](#conversion-functions)
+  - [Null Handling Functions](#null-handling-functions)
+  - [Window Functions](#window-functions)
+  - [User Defined Functions](#user-defined-functions)
+- [SQL Query Processing Order](#sql-query-processing-order)
+- [SQL Constraints](#sql-constraints)
+
+---
+
+## What is SQL?
 
 SQL stands for Structured Query Language.  
 It is a domain specific programming language that is used to manage and manipulate data stored in relational database management systems.  
 SQL helps you query data, insert new records, update existing information and control access to the database.
 
+---
 
-## 🗂️ Main Types of SQL Functions
+## 🗂️ SQL Functions
 
-## Aggregate functions
+### Aggregate Functions
 
 | Function name | What it does |
 |--------------|--------------|
@@ -18,7 +37,9 @@ SQL helps you query data, insert new records, update existing information and co
 | MAX | Returns the largest value in a column |
 | GROUPING | Identifies grouped data when using roll up or cube |
 
-## String or text functions
+---
+
+### String/Text Functions
 
 | Function name | What it does |
 |--------------|--------------|
@@ -30,18 +51,9 @@ SQL helps you query data, insert new records, update existing information and co
 | TRIM | Removes leading and trailing spaces |
 | REPLACE | Replaces character or text within a string |
 
-## String or text functions
+---
 
-| Function name | What it does |
-|--------------|--------------|
-| UPPER | Converts text to upper case |
-| LOWER | Converts text to lower case |
-| LENGTH | Returns the count of characters |
-| CONCAT | Joins multiple strings |
-| SUBSTRING | Extracts part of a string |
-| TRIM | Removes leading and trailing spaces |
-| REPLACE | Replaces character or text within a string |
-## Numeric or math functions
+### Numeric/Math Functions
 
 | Function name | What it does |
 |--------------|--------------|
@@ -53,8 +65,9 @@ SQL helps you query data, insert new records, update existing information and co
 | SQRT | Returns square root of a number |
 | MOD | Returns remainder of a division |
 
+---
 
-## Date and time functions
+### Date and Time Functions
 
 | Function name | What it does | Complete syntax with parameters |
 |--------------|--------------|--------------------------------|
@@ -82,7 +95,9 @@ SQL helps you query data, insert new records, update existing information and co
 | TIMESTAMP | Converts value to timestamp | TIMESTAMP(date_value, optional_time_value) |
 | STR TO DATE | Parses string to date using format | STR_TO_DATE(text_value, format_pattern) |
 
-## Conversion functions
+---
+
+### Conversion Functions
 
 | Function name | What it does |
 |--------------|--------------|
@@ -90,14 +105,20 @@ SQL helps you query data, insert new records, update existing information and co
 | CONVERT | Converts data type with formatting support |
 | PARSE | Converts from string to date or number format |
 | FORMAT | Formats numbers or dates as text |
-## Null handling functions
+
+---
+
+### Null Handling Functions
 
 | Function name | What it does |
 |--------------|--------------|
 | COALESCE | Returns first non null value |
 | NULLIF | Returns null if two values are equal |
 | ISNULL or NVL | Replaces null with given value |
-## Window functions
+
+---
+
+### Window Functions
 
 | Function name | What it does |
 |--------------|--------------|
@@ -111,15 +132,21 @@ SQL helps you query data, insert new records, update existing information and co
 | LAST VALUE | Returns last value in window |
 | CUME DIST | Returns cumulative distribution value |
 | PERCENT RANK | Returns rank percentage value |
-## User defined functions
+
+---
+
+### User Defined Functions
 
 | Function name | What it does |
 |--------------|--------------|
 | Scalar UDF | Returns a single value from logic |
 | Table UDF | Returns a full table result |
 
+---
 
-## SQL Logical Processing Order Table
+## 🔄 SQL Query Processing Order
+
+Understanding the logical order in which SQL processes queries helps you write more efficient code.
 
 | Step | Clause      | What it does                                        |
 |-----:|-------------|----------------------------------------------------|
@@ -134,8 +161,9 @@ SQL helps you query data, insert new records, update existing information and co
 | 9    | LIMIT       | Restricts number of rows returned                 |
 | 10   | OFFSET      | Skips rows before applying the limit              |
 
+---
 
-## SQL constraints
+## 🔒 SQL Constraints
 
 Constraints are rules applied on columns or tables to protect data accuracy and consistency.
 
@@ -149,3 +177,10 @@ Constraints are rules applied on columns or tables to protect data accuracy and 
 | DEFAULT | Automatically assigns a value when no value is given |
 | CREATE INDEX | Improves speed of searching and reading data |
 
+---
+
+## 📝 Notes
+
+- This guide covers the most commonly used SQL functions across different database systems
+- Syntax may vary slightly between SQL Server, MySQL, PostgreSQL, and Oracle
+- Always refer to your specific database documentation for exact syntax and available functions
