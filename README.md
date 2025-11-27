@@ -52,28 +52,36 @@ SQL helps you query data, insert new records, update existing information and co
 | POWER | Raises a number to a specified power |
 | SQRT | Returns square root of a number |
 | MOD | Returns remainder of a division |
+
+
 ## Date and time functions
 
-| Function name | What it does |
-|--------------|--------------|
-| NOW or GETDATE | Returns current date and time |
-| CURRENT DATE | Returns only the current date |
-| CURRENT TIME | Returns only the current time |
-| DATEDIFF | Calculates difference between two dates |
-| DATEADD | Adds a specified interval to a date |
-| DATEPART or EXTRACT | Returns part of a date like year or month |
-| LAST DAY | Returns last day of the month of a date |
-## Date and time functions
+| Function name | What it does | Complete syntax with parameters |
+|--------------|--------------|--------------------------------|
+| NOW | Returns current system date and time | NOW() |
+| GETDATE | Returns current date and time in SQL Server | GETDATE() |
+| CURRENT DATE | Returns current date only | CURRENT_DATE |
+| CURRENT TIME | Returns current time only | CURRENT_TIME |
+| CURDATE | Returns current date in MySQL | CURDATE() |
+| CURTIME | Returns current time in MySQL | CURTIME() |
+| SYSDATE | Returns system clock date and time | SYSDATE() |
+| DATEDIFF | Returns difference between two dates | DATEDIFF(end_date, start_date) MySQL version  or  DATEDIFF(datepart, start_date, end_date) SQL Server version |
+| TIMESTAMPDIFF | Difference between timestamps with a unit | TIMESTAMPDIFF(unit, start_date, end_date) |
+| DATEADD | Adds time interval to a date | DATEADD(unit, number_to_add, base_date) |
+| ADDDATE | Adds days or interval to a date | ADDDATE(base_date, INTERVAL number unit) |
+| EXTRACT or DATEPART | Extracts a specific part such as year | EXTRACT(part FROM date_value) or DATEPART(part, date_value) |
+| YEAR | Extracts year | YEAR(date_value) |
+| MONTH | Extracts month number | MONTH(date_value) |
+| DAY | Extracts day of month | DAY(date_value) |
+| MONTHNAME | Returns month name | MONTHNAME(date_value) |
+| DAYNAME | Returns weekday name | DAYNAME(date_value) |
+| EOMONTH | Returns last day of month | EOMONTH(date_value) |
+| LAST DAY | Returns last day of month Oracle style | LAST_DAY(date_value) |
+| MAKEDATE | Creates date using year and day number | MAKEDATE(year_value, day_of_year) |
+| MAKETIME | Creates time using hour minute second | MAKETIME(hour_value, minute_value, second_value) |
+| TIMESTAMP | Converts value to timestamp | TIMESTAMP(date_value, optional_time_value) |
+| STR TO DATE | Parses string to date using format | STR_TO_DATE(text_value, format_pattern) |
 
-| Function name | What it does |
-|--------------|--------------|
-| NOW or GETDATE | Returns current date and time |
-| CURRENT DATE | Returns only the current date |
-| CURRENT TIME | Returns only the current time |
-| DATEDIFF | Calculates difference between two dates |
-| DATEADD | Adds a specified interval to a date |
-| DATEPART or EXTRACT | Returns part of a date like year or month |
-| LAST DAY | Returns last day of the month of a date |
 ## Conversion functions
 
 | Function name | What it does |
@@ -111,4 +119,33 @@ SQL helps you query data, insert new records, update existing information and co
 | Table UDF | Returns a full table result |
 
 
+## SQL Logical Processing Order Table
+
+| Step | Clause      | What it does                                        |
+|-----:|-------------|----------------------------------------------------|
+| 1    | FROM        | Reads data from the source tables                  |
+| 2    | JOIN        | Combines data from related tables                  |
+| 3    | WHERE       | Filters rows before grouping                       |
+| 4    | GROUP BY    | Groups rows based on shared values                 |
+| 5    | HAVING      | Filters grouped records using aggregated data     |
+| 6    | SELECT      | Chooses columns or expressions for output         |
+| 7    | DISTINCT    | Removes duplicate rows from the result            |
+| 8    | ORDER BY    | Sorts the final output                            |
+| 9    | LIMIT       | Restricts number of rows returned                 |
+| 10   | OFFSET      | Skips rows before applying the limit              |
+
+
+## SQL constraints
+
+Constraints are rules applied on columns or tables to protect data accuracy and consistency.
+
+| Constraint name | What it ensures |
+|----------------|----------------|
+| NOT NULL | A column cannot store a null value |
+| UNIQUE | All values in a column are different |
+| PRIMARY KEY | Combination of not null and unique to identify each row in a table |
+| FOREIGN KEY | Maintains valid links between tables and protects relational integrity |
+| CHECK | Values in a column must satisfy a rule or condition |
+| DEFAULT | Automatically assigns a value when no value is given |
+| CREATE INDEX | Improves speed of searching and reading data |
 
